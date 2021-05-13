@@ -7,14 +7,20 @@ import Todo from './components/Todo';
 export default function App() {
 
   const [todos,setTodos] = useState([]);
+  
 
   const addTodo = todo=>{
-    setTodos(currentTodos=>[...currentTodos,{ key:currentTodos.length.toString(),value:todo}]);
+    //setTodos(currentTodos=>[...currentTodos,{ key:currentTodos.length.toString(),value:todo}]);
+    setTodos(currentTodos=>[{ key:currentTodos.length.toString(),value:todo},...currentTodos]);
+    
   }
 
   return (
     <View style={styles.screen}>
-      <Text>Reminder</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>Reminder</Text>
+        <Text style={styles.manoCode}>by manoCode</Text>
+      </View>
       <InputField addTodo={addTodo} />
       <FlatList
         data={todos} renderItem={
@@ -30,7 +36,20 @@ export default function App() {
 
 const styles = StyleSheet.create({
   screen : {
-    padding:50
+    paddingTop:50,
+    paddingLeft:20
+  },
+  title:{
+    fontSize:30
+  },
+  manoCode:{
+    fontSize:15,
+    paddingLeft:10,
+    color:'#4B4B48'
+  },
+  header:{
+    flexDirection:'row',
+    alignItems:'center'
   }
 });
 
