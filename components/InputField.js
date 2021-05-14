@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, TextInput, View, StyleSheet } from 'react-native';
+import { Button, TextInput, View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 
 
@@ -17,7 +17,8 @@ const InputField = props => {
     }
 
     return (
-        <View style={styles.inputContainer}>
+        <View>
+            <View style={styles.inputContainer}>
             <TextInput 
                 style={styles.input}
                 placeholder="Enter the TODO !!!"
@@ -25,9 +26,16 @@ const InputField = props => {
                 value={enteredTodo}
             />
             <Button title="+" onPress={props.addTodo.bind(this,enteredTodo)
-            } />
-            <Button title="-" onPress={removeText}/>
+            } />  
+            </View>
+            <View>
+                <TouchableOpacity onPress={removeText} style={{ backgroundColor:'red' ,height: 50,width:'80%', marginTop: 0 }}>
+                    <Text>Clear the input !!!</Text>
+                </TouchableOpacity>
+                {/* <Button color='red'  title="Clear input box" onPress={removeText}/> */}
+            </View>
         </View>
+        
     );
 };
 
