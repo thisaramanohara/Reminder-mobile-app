@@ -11,11 +11,19 @@ class App extends Component {
       todos:[]
     }
     this.addTodo = this.addTodo.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
   }
 
   addTodo(todo) {
     //currentTodos = []
-    currentTodos = [{ key:this.state.todos.length.toString(),value:todo},...this.state.todos];
+    currentTodos = [{ id:this.state.todos.length.toString(),value:todo},...this.state.todos];
+    this.setState({
+      todos:currentTodos
+    })
+  }
+
+  removeTodo(todoKey) {
+    currentTodos = this.state.todos.filter(item => item.id !== todoKey);
     this.setState({
       todos:currentTodos
     })
@@ -31,7 +39,7 @@ class App extends Component {
         <InputField addTodo={this.addTodo} />
         <FlatList
           data={this.state.todos} renderItem={
-            itemData=> <Todo data={itemData.item.value} />
+            itemData=> <Todo id={itemData.item.id} onDelete={this.removeTodo} data={itemData.item.value} />
           }
         />
         <StatusBar style="auto" />
