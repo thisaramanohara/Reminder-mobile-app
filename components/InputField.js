@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, TextInput, View, StyleSheet } from 'react-native';
 
+
+
 const InputField = props => {
 
     const [enteredTodo,setEnteredTodo] = useState('');
@@ -8,6 +10,10 @@ const InputField = props => {
 
     const setTodo = entered =>{
         setEnteredTodo(entered);
+    }
+
+    const removeText = ()=>{
+        setEnteredTodo("");
     }
 
     return (
@@ -20,6 +26,7 @@ const InputField = props => {
             />
             <Button title="+" onPress={props.addTodo.bind(this,enteredTodo)
             } />
+            <Button title="-" onPress={removeText}/>
         </View>
     );
 };
